@@ -1,0 +1,28 @@
+url_login     = "https://services.aamc.org/eras/myeras2015/login/select_account.cfm"
+url_main      = "https://services.aamc.org/eras/myeras2015/account/account.cfm"
+url_inbox     = "https://services.aamc.org/eras/myeras2015/messages/message_manager.cfc?method=getMessages&returnFormat=json"
+url_msg_templ = "https://services.aamc.org/eras/myeras2015/messages/message_manager.cfc?method=getMessage&returnFormat=json&guid=%s&msgid=%s"
+
+un = "ERAS_USERNAME"
+pw = "ERAS_PASSWORD"
+
+# Email settings (to, from, mailserver details)
+#
+# MAIL_UN and MAIL_PW may be left blank, but should be specified if the mailserver requires it
+# TO is an array of email addresses, and can be used to send a text message
+# see https://manual.cs50.net/Sending_Texts/ for more details
+
+MAIL_SERVER = "mail.example.com"
+MAIL_UN     = "mail_server_username"
+MAIL_PW     = "mail_server_password"
+
+FR  = "email_address_of_alert_email"
+TO  = ["email_address_to_send_alert_email_to"]
+
+MSG = """\
+From: %(fr)s
+To: %(to)s
+Subject: ERAS
+
+%(msg)s
+""".encode('utf-8')
