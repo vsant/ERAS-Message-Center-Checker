@@ -1,10 +1,10 @@
 #!/usr/bin/env python
-# 
+#
 # ERAS Message Center Scraper
-# 
+#
 # Vivek Sant
 # 2014-09-29
-# 
+#
 
 import os
 import re
@@ -37,7 +37,7 @@ def main(args):
   opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cj))
   login_data = urllib.urlencode({ 'username' : un, 'password' : pw })
   opener.open(url_login, login_data)
-  
+
   # Read inbox
   resp = opener.open(url_inbox).read().strip()
 
@@ -57,8 +57,8 @@ def main(args):
       msg = json.loads(opener.open(url_msg).read().strip())
       fr = msg["fromAlias"] if "fromAlias" in msg.keys() else msg["frominstitution"]
       email(clean(fr.encode('utf-8')) \
-      		+ "\n" + clean(msg["subject"].encode('utf-8')) \
-      		+ "\n\n" + clean(msg["message"].encode('utf-8')))
+          + "\n" + clean(msg["subject"].encode('utf-8')) \
+          + "\n\n" + clean(msg["message"].encode('utf-8')))
 
   # Write out db file
   f = open(fn, "w")
@@ -66,5 +66,5 @@ def main(args):
     f.write(i + "\n")
 
 if __name__ == "__main__":
-  import sys 
+  import sys
   sys.exit(main(sys.argv))
