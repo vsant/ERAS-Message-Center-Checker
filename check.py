@@ -15,7 +15,7 @@ from settings import *
 fn  = os.path.dirname(os.path.realpath(__file__)) + '/db.txt'
 
 def clean(txt):
-  txt = txt.replace('<br>', '\n').replace('<br />', '\n').replace('&nbsp;', ' ')
+  txt = txt.replace('<br>', '\n').replace('<br />', '\n').replace('&nbsp;', ' ').replace('<BR>', '\n').replace('<BR />', '\n')
   p = re.compile(r'<.*?>')
   return p.sub('', txt).strip()
 
