@@ -54,7 +54,7 @@ def main(args):
     if ID not in cache:
       cache.append(ID)
       url_msg = url_msg_templ % (str(m['guid']), str(m['msgid']))
-      msg = json.loads(opener.open(url_msg).read().strip())
+      msg = json.loads(opener.open(url_msg).read().decode('utf8', 'ignore').strip())
       fr = msg["fromAlias"] if "fromAlias" in msg.keys() else msg["frominstitution"]
       email(clean(fr.encode('utf-8')) \
           + "\n" + clean(msg["subject"].encode('utf-8')) \
